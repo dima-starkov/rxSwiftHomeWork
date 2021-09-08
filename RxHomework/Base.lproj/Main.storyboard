@@ -102,10 +102,16 @@
                                         <state key="normal" title="Удалить">
                                             <color key="titleColor" systemColor="systemRedColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="deleteButton:" destination="eh8-uY-e29" eventType="touchUpInside" id="bL7-Te-Hp0"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avW-tl-XHN">
                                         <rect key="frame" x="252" y="0.0" width="69" height="30"/>
                                         <state key="normal" title="Добавить"/>
+                                        <connections>
+                                            <action selector="addButton:" destination="eh8-uY-e29" eventType="touchUpInside" id="s9h-oq-Yln"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -218,6 +224,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="QYy-C9-jEe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hIE-20-8PJ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

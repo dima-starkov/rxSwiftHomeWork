@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class ThirdViewController: UIViewController {
 
@@ -14,18 +15,39 @@ class ThirdViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     
-    let names = Observable.from(["Dima","Denis","Anton"])
+    
+    
+    var names = ["Dima","Denis","Anton"]
+    var namesrx = BehaviorRelay(value: [String]())
+    
+    let randomArray = ["Anna","Nikita","Oleg","John","Tom","Sveta","Maria"]
     let dispose = DisposeBag()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        names.bind(to: tableView.rx.items(cellIdentifier: "cell",cellType: UITableViewCell.self)) {row,data,cell in
-//            cell.textLabel?.text = data
-           
-        }
-                    
-        
+        namesrx.accept(names)
+            namesrx.bind(to: tableView.rx.items) {
+            (tableView, row, element) in
+                             let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+                             cell.textLabel?.text = "\(element)"
+                             return cell
+        }.disposed(by: dispose)
+       
+                        
+            
     }
     
-
+    @IBAction func addButton(_ sender: Any) {
+        let new  = randomArray.randomElement() ?? ""
+        names.append(new)
+        namesrx.accept(names)
+    }
+    
+    @IBAction func deleteButton(_ sender: Any) {
+        names.removeLast()
+        namesrx.accept(names)
+    }
+    
+    
 }
